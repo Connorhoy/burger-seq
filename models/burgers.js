@@ -1,26 +1,23 @@
-// JS Code (Burgers JS)
+// JS Code (Burgers JS - Sequalized)
 
-// Imports the ORM to create functions that will interact with the database.
-
-var orm = require("../config/orm.js");
-
-var burger = {
-	all: function(cb){
-		orm.selectAll("burgers", function(res){
-			cb(res);
-		});
-	},
-	create: function(vals, cb){
-		orm.insertOne("burgers", vals, function(res){
-			cb(res);
-		});
-	},
-	update: function(condition, cb){
-		orm.updateOne("burgers", condition, function(res){
-			cb(res);
-		});
+// Sequalized Burgers code.
+module.exports = function(sequelize, DataTypes){
+	var Burger = sequelize.define("Burger", {
+		burger_name: {
+            type: DataTypes.STRING,
+            unique: {
+                args: true,
+                message: 'Burger name must be unique.',
+                fields: [sequelize.fn('lower', sequelize.col('username'))]
+            }
+        },
+		devoured: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: false
+		}
 	}
-};
+);
+	return Burger;
+}
 
-// Finally, exports the module.
-module.exports = burger; 
