@@ -3,10 +3,10 @@
 var express = require("express");
 var router = express.Router();
 
-//Import the model to use its database functions
+// Imports the model to use its database functions.
 var db = require("../models");
 
-//Create routes and set up logic
+// Create routes and set up logic.
 router.get("/", function(req, res){
 	db.Burger.findAll({})
 	.then(function(result){
@@ -45,5 +45,5 @@ router.put("/:id", function(req, res){
 	});
 });
 
-//Export routes for server.js 
+// Finally, exports routes for server.js. 
 module.exports = router;
