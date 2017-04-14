@@ -1,17 +1,17 @@
-// JS Code (Burgers Controller)
+// JS Code (Burgers Controller-Sequalized)
 
-// Requiring Dependincies
 var express = require("express");
 var router = express.Router();
 
-// Import the model to use its database functions.
-var burger = require("../models/burger.js");
+//Import the model to use its database functions
+var db = require("../models");
 
-// In theory...this creates the routes.
+//Create routes and set up logic
 router.get("/", function(req, res){
-	burger.all(function(data){
+	db.Burger.findAll({})
+	.then(function(result){
 		var hbsObject = {
-			burgers: data
+			burgers: result
 		};
 		console.log(hbsObject);
 		res.render("index", hbsObject);
@@ -19,16 +19,31 @@ router.get("/", function(req, res){
 });
 
 router.post("/", function(req, res){
-	burger.create([
-		req.body.name
-	],function(){
+	db.Burger.create({
+		burger_name: req.body.name
+	})
+	.then(function(){
 		res.redirect("/");
 	});
 });
 
-// Couldn't figure this part out.
 router.put("/:id", function(req, res){
+	console.log("id", req.params.id);
+
+	db.Burger.update(
+	{
+		devoured: true
+	},
+	
+	{
+		where: {
+			id: req.params.id
+		}
+	})
+	.then(function(){
+		res.redirect("/");
+	});
 });
 
-// Finally, exports the module.
+//Export routes for server.js 
 module.exports = router;
