@@ -4,7 +4,7 @@
     "password": "root",
     "database": "burgers_db",
     "host": "127.0.0.1",
-    "port": "3316",
+    "port": "3306",
     "dialect": "mysql"
   },
   "test": {
@@ -15,11 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "JawsDB_URL":"",
-    "database": "",
-    "host": "",
-    "username": "",
-    "password": "",
-    "dialect": ""
+    "JawsDB_URL":"mysql://zfjoz10cdijvpn0u:ke8w9oh5r004xqaq@vvfv20el7sb2enn3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qcchgr26sn1x77cl",
+    "database": "qcchgr26sn1x77cl",
+    "host": "vvfv20el7sb2enn3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "zfjoz10cdijvpn0u",
+    "password": "ke8w9oh5r004xqaq",
+    "dialect": "sql"
   }
 }
